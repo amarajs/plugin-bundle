@@ -1,0 +1,38 @@
+{
+  "name": "@amarajs/plugin-bundle",
+  "version": "0.1.0",
+  "description": "Server-side plugin to bundle folder contents into a single file using Rollup.",
+  "main": "dist/amara-plugin-bundle.js",
+  "umd:main": "dist/amara-plugin-bundle.umd.js",
+  "jsnext:main": "src/index.js",
+  "scripts": {
+    "build": "npm-run-all -p rollup:* -p minify:*",
+    "rollup:cjs": "rollup -c rollup.config.js -i src/index.js -f cjs -o dist/amara-plugin-bundle.js",
+    "rollup:umd": "rollup -c rollup.config.js -i src/index.js -f umd -o dist/amara-plugin-bundle.umd.js -n AmaraBundle",
+    "minify:cjs": "uglifyjs dist/amara-plugin-bundle.js -cm toplevel -o dist/amara-plugin-bundle.min.js --source-map filename=dist/amara-plugin-bundle.min.js.map",
+    "minify:umd": "uglifyjs dist/amara-plugin-bundle.umd.js -cm toplevel -o dist/amara-plugin-bundle.umd.min.js --source-map filename=dist/amara-plugin-bundle.umd.min.js.map"
+  },
+  "keywords": [
+    "amarajs",
+    "server",
+    "plugin",
+    "bundle",
+    "rollup"
+  ],
+  "author": "Dan Barnes <amarajs.framework@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amarajs/plugin-bundle.git"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "devDependencies": {
+    "npm-run-all": "^4.1.2",
+    "rollup": "^0.57.1",
+    "rollup-plugin-buble": "^0.15.0",
+    "uglify-js": "^3.3.21"
+  }
+}
